@@ -1,1 +1,12 @@
 # dTOR-985-Connectome
+
+Diffusion-weighted MRI (dMRI) is a widely used neuroimaging modality that permits the in vivo exploration of white matter connections in the human brain. Normative structural connectomics – the application of large-scale, group-derived dMRI datasets to out-of-sample cohorts – have increasingly been leveraged to study the network correlates of focal brain interventions, insults, and other regions-of-interest (ROIs). Here, we provide a normative, whole-brain connectome in MNI space that enables researchers to interrogate fiber streamlines that are likely perturbed by given ROIs, even in the absence of subject-specific dMRI data. Assembled from multi-shell dMRI data of 985 healthy Human Connectome Project subjects using generalized Q-sampling imaging and multispectral normalization techniques, this connectome comprises ~12 million unique streamlines, the largest to date. It has been already utilized in at least 18 peer-reviewed publications, most frequently in the context of neuromodulatory interventions like deep brain stimulation and focused ultrasound. This connectome constitute a useful tool for understanding the wider impact of focal brain perturbations on white matter architecture going forward and it will be publicly available shortly.
+
+The files (including the MATLAB scripts provided here) necessary to use the connectome are available on FigShare (https://figshare.com/s/0dcf57e9946c8ee5e74f).
+This repository contains the two custom-built matlab scripts created for this project: 
+- ‘dTOR_compute_fiber_weights.m’
+- ‘dTOR_create_trk.m’ 
+
+These scripts are to be run one after the other to identify and output fiber streamlines that overlap a given region-of-interest (ROI). The freely available SPM software package (https://www.fil.ion.ucl.ac.uk/spm/software/spm12/) must be downloaded and added to the matlab path before use. 
+The first script (‘dTOR_compute_fiber_weights.m’) takes an ROI input file in nifti format and uses this to seed the structural connectome, identifying streamlines that intersect the ROI and ascribing them a  weight. 
+To convert the information saved in the matlab data file to a viewable form, the second script (‘dTOR_create_trk.m’) must be run. This script takes the .mat file created by the first script as an input and generates a tractogram file (.trk) that can be opened in a streamline viewing/editing software such as MI-Brain (https://github.com/imeka/mi-brain) or TrackVis (https://trackvis.org). 
